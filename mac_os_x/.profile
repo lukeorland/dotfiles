@@ -12,6 +12,7 @@ alias screen='byobu'
 export PS1='\n\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w\[\033[00m\]\n\$ '
 
 # Give priority to /usr/local/bin
+PATH=/usr/local/share/python:"${PATH}"
 PATH=$HOME/Library/Application\ Support/MultiMarkdown/bin:"${PATH}"
 PATH=/usr/local/sbin:"${PATH}"
 PATH=/usr/local/bin:"${PATH}"
@@ -19,8 +20,18 @@ PATH=$HOME/.cabal/bin:"${PATH}"
 PATH=$HOME/bin:"${PATH}"
 PATH=/Library/Ruby/Gems/1.8/gems/:"${PATH}"
 
+export PYTHONPATH=/usr/local/lib/python:$PYTHONPATH
+
 # bash editing using vi techniques
 #set -o vi
 
 # use Vim as the MANPAGER
 export MANPAGER='col -bx | vim -c ":set ft=man nonu nolist" -c ":map q :q<CR>" -R -'
+
+# vimpager, unfortunately, seems to mess up git diff for me.
+#export PAGER=`which vimpager` 
+#alias less=$PAGER
+
+# replace stock Vim with the more well-endowed version bundled with MacVim.app
+# http://blog.coredumped.org/2010/01/osx-vim-and-python.html
+[ -x "/Applications/MacVim.app/Contents/MacOS/Vim" ] && alias vim=/Applications/MacVim.app/Contents/MacOS/Vim
