@@ -12,13 +12,13 @@ alias screen='byobu'
 export PS1='\n\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w\[\033[00m\]\n\$ '
 
 # Give priority to /usr/local/bin
-PATH=/usr/local/share/python:"${PATH}"
 PATH=$HOME/Library/Application\ Support/MultiMarkdown/bin:"${PATH}"
 PATH=/usr/local/sbin:"${PATH}"
 PATH=/usr/local/bin:"${PATH}"
 PATH=$HOME/.cabal/bin:"${PATH}"
-PATH=$HOME/bin:"${PATH}"
+PATH=$HOME/opt/bin:"${PATH}"
 PATH=/Library/Ruby/Gems/1.8/gems/:"${PATH}"
+PATH=/usr/local/share/python:"${PATH}"
 
 export PYTHONPATH=/usr/local/lib/python:$PYTHONPATH
 
