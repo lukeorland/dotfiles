@@ -9,7 +9,8 @@
 !xterm*font:     -Misc-Fixed-Medium-R-Normal--20-200-75-75-C-100-ISO10646-1
 !xterm*font:        -misc-fixed-medium-r-normal--18-*-*-*-*-*-iso10646-1
 !xterm*font:        -bitstream vera sans mono--12-*-*-*-*-*-iso10646-1
-XTerm*faceName: Bitstream Vera Serif Mono
+!XTerm*faceName: Bitstream Vera Serif Mono
+XTerm*faceName: unifont
 XTerm*faceSize: 10
 !xterm*iconPixmap: ...
 xterm*iconPixmap:       /usr/share/pixmaps/gnome-gemvt.xbm
