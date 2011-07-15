@@ -6,19 +6,26 @@ alias ls='ls -FG'
 # If using coreutils provided by homebrew:
 #source /usr/local/Cellar/coreutils/8.5/aliases
 #alias ls="$(brew --prefix)/bin/gls --color -p"
+alias cp='cp -i'
+alias mv='mv -i'
 
 alias screen='byobu'
 
-export PS1='\n\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w\[\033[00m\]\n\$ '
+export PS1='\n\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w\[\033[00m\]$(__git_ps1 " (%s)")\n\$ '
+
+# bash completion for git
+GIT_PS1_SHOWDIRTYSTATE=true
+source ~/opt/bin/git-completion.bash
+#PS1='[\u@\h \w$(__git_ps1 " (%s)")]\$
 
 # Give priority to /usr/local/bin
-PATH=$HOME/Library/Application\ Support/MultiMarkdown/bin:"${PATH}"
-PATH=/usr/local/sbin:"${PATH}"
-PATH=/usr/local/bin:"${PATH}"
-PATH=$HOME/.cabal/bin:"${PATH}"
 PATH=$HOME/opt/bin:"${PATH}"
+PATH=$HOME/.cabal/bin:"${PATH}"
+PATH=$HOME/Library/Application\ Support/MultiMarkdown/bin:"${PATH}"
 PATH=/Library/Ruby/Gems/1.8/gems/:"${PATH}"
 PATH=/usr/local/share/python:"${PATH}"
+PATH=/usr/local/sbin:"${PATH}"
+PATH=/usr/local/bin:"${PATH}"
 
 export PYTHONPATH=/usr/local/lib/python:$PYTHONPATH
 
@@ -26,7 +33,7 @@ export PYTHONPATH=/usr/local/lib/python:$PYTHONPATH
 #set -o vi
 
 # use Vim as the MANPAGER
-export MANPAGER='col -bx | vim -c ":set ft=man nonu nolist" -c ":map q :q<CR>" -R -'
+#export MANPAGER='col -bx | vim -c ":set ft=man nonu nolist" -c ":map q :q<CR>" -R -'
 
 # vimpager, unfortunately, seems to mess up git diff for me.
 #export PAGER=`which vimpager` 
