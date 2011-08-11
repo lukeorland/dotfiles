@@ -42,3 +42,9 @@ export PYTHONPATH=/usr/local/lib/python:$PYTHONPATH
 # replace stock Vim with the more well-endowed version bundled with MacVim.app
 # http://blog.coredumped.org/2010/01/osx-vim-and-python.html
 [ -x "/Applications/MacVim.app/Contents/MacOS/Vim" ] && alias vim=/Applications/MacVim.app/Contents/MacOS/Vim
+
+# next three commands are for rvm
+# http://beginrescueend.com/rvm/install/
+export CC=gcc-4.2
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
+[[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion
