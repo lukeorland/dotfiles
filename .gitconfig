@@ -1,10 +1,10 @@
 [user]
-  user = Luke Orland
+	user = lukeorland
 	email = orluke@gmail.com
-	name = lukeorland
+	name = Luke Orland
 [github]
-  user = lukeorland
-  #token = github API token
+	user = lukeorland
+	#token = github API token
 [giggle]
 	compact-mode = true
 	main-window-maximized = true
@@ -16,13 +16,13 @@
 	ui = auto
 [color "branch"]
 	current = yellow reverse
-  local = yellow
+	local = yellow
 	remote = green
 [color "diff"]
 	meta = yellow
 	frag = magenta
 	old = red
-  new = green
+	new = green
 [color "status"]
 	added = yellow
 	changed = green
@@ -41,3 +41,8 @@
 	co = checkout
 	df = diff
 	lg = log -p
+[gui]
+	recentrepo = /Dropbox/Luke/school/jhu-grad/courses/declarative_methods-600.425/hw01/repo
+[branch "master"]
+	remote = origin
+	merge = refs/heads/master
