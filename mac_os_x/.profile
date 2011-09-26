@@ -48,3 +48,6 @@ export PYTHONPATH=/usr/local/lib/python:$PYTHONPATH
 export CC=gcc-4.2
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
 [[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion
+
+# Homebrew
+source `brew --prefix`/Library/Contributions/brew_bash_completion.sh
