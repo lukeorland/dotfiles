@@ -19,13 +19,15 @@ source ~/opt/bin/git-completion.bash
 #PS1='[\u@\h \w$(__git_ps1 " (%s)")]\$
 
 # Give priority to /usr/local/bin
-PATH=$HOME/opt/bin:"${PATH}"
+# prepending in this order:
+PATH=/usr/local/sbin:"${PATH}"
+PATH=/usr/local/bin:"${PATH}"
 PATH=$HOME/.cabal/bin:"${PATH}"
 PATH=$HOME/Library/Application\ Support/MultiMarkdown/bin:"${PATH}"
 PATH=/Library/Ruby/Gems/1.8/gems/:"${PATH}"
+PATH=/usr/local/share/python3:"${PATH}"
 PATH=/usr/local/share/python:"${PATH}"
-PATH=/usr/local/sbin:"${PATH}"
-PATH=/usr/local/bin:"${PATH}"
+PATH=$HOME/opt/bin:"${PATH}"
 
 export PYTHONPATH=/usr/local/lib/python:$PYTHONPATH
 
