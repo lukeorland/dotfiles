@@ -53,3 +53,6 @@ export CC=gcc-4.2
 
 # Homebrew
 source `brew --prefix`/Library/Contributions/brew_bash_completion.sh
+
+# Java
+export JAVA_HOME=`/usr/libexec/java_home`
