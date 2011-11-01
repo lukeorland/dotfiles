@@ -15,7 +15,7 @@ export PS1='\n\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w\[\033[00m\]$(__
 
 # bash completion for git
 GIT_PS1_SHOWDIRTYSTATE=true
-source ~/opt/bin/git-completion.bash
+source /usr/local/etc/bash_completion.d/git-completion.bash
 #PS1='[\u@\h \w$(__git_ps1 " (%s)")]\$
 
 # Give priority to /usr/local/bin
