@@ -31,6 +31,13 @@ PATH=$HOME/opt/bin:"${PATH}"
 
 export PYTHONPATH=/usr/local/lib/python:$PYTHONPATH
 
+# avoid having consecutive duplicate commands and other not so useful
+# information appended to the history list.
+export HISTIGNORE="&:pwd:ls:ls -l:ls -la:ll:cd:cd \-:cd /:cd .."
+
+# ignores any 2 letter command.
+export HISTIGNORE="?? "
+
 # bash editing using vi techniques
 #set -o vi
 
@@ -50,6 +57,8 @@ export PYTHONPATH=/usr/local/lib/python:$PYTHONPATH
 export CC=gcc-4.2
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
 [[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion
+
+eval "$(rbenv init -)"
 
 # Homebrew
 source `brew --prefix`/Library/Contributions/brew_bash_completion.sh
