@@ -58,6 +58,8 @@ export CC=gcc-4.2
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
 [[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion
 
+eval "$(rbenv init -)"
+
 # Homebrew
 source `brew --prefix`/Library/Contributions/brew_bash_completion.sh
 
