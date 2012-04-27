@@ -4,7 +4,7 @@
 	name = Luke Orland
 [github]
 	user = lukeorland
-	token = !security 2>&1 >/dev/null find-generic-password -gs github.token | ruby -e 'print $1 if STDIN.gets =~ /^password: \\\"(.*)\\\"$/'
+	#password = !security 2>&1 >/dev/null find-generic-password -gs github.token | ruby -e 'print $1 if STDIN.gets =~ /^password: \\\"(.*)\\\"$/'
 [giggle]
 	compact-mode = true
 	main-window-maximized = true
