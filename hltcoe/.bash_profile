@@ -20,3 +20,6 @@ source /home/hltcoe/lorland/.bash_profile_run_ssh-agent
 export JOSHUA=/home/hltcoe/lorland/workspace/joshua
 export JAVA_HOME=/usr/java/default
 export GIT_SSL_NO_VERIFY=true
+export PIP_DOWNLOAD_CACHE=$HOME/.pip_download_cache
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*

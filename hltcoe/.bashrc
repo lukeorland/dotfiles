@@ -9,3 +9,5 @@ fi
 alias ls="ls --color -p"
 alias cp='cp -i'
 alias mv='mv -i'
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
