@@ -19,6 +19,10 @@ export JAVA_HOME=/usr/java/default
 export GIT_SSL_NO_VERIFY=true
 export PIP_DOWNLOAD_CACHE=$HOME/.pip_download_cache
 
+export HADOOP_VERSION="0.20.203.0"
+export HADOOP=/opt/apache/hadoop
+export HADOOP_CONF_DIR=/opt/apache/hadoop/conf/apache-mr/mapreduce
+
 # Load RVM into a shell session *as a function*
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
