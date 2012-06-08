@@ -1,0 +1,19 @@
+# Python
+virtualenv was already installed, so I just had to do
+
+    virtualenv $HOME/opt
+    pip install bpython
+    pip install nltk
+
+# Ruby
+
+    curl -L get.rvm.io | bash -s stable
+    rvm pkg install openssl
+    rvm pkg install readline
+    rvm install 1.9.2 --with-openssl-dir=$rvm_path/usr --with-readline-dir=$rvm_path/usr
+    gem install gist
+    gem install github
+
+<!--
+vim: filetype=markdown ts=4:sw=4:expandtab
+-->
