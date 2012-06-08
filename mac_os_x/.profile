@@ -87,10 +87,6 @@ export JAVA_HOME=`/usr/libexec/java_home`
 # Joshua
 export JOSHUA="$HOME/workspace/joshua"
 
-# CUDA
-PATH=/usr/local/cuda/bin:$PATH
-export DYLD_LIBRARY_PATH=/usr/local/cuda/lib:$DYLD_LIBRARY_PATH 
-
 PATH=$HOME/.cabal/bin:"${PATH}"
 PATH=$HOME/Library/Application\ Support/MultiMarkdown/bin:"${PATH}"
 PATH=$HOME/opt/bin:"${PATH}"
