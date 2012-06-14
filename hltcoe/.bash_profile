@@ -29,3 +29,6 @@ export HADOOP_CONF_DIR=/opt/apache/hadoop/conf/apache-mr/mapreduce
 PATH=$HOME/opt/bin:$PATH
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 export PATH
+
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
