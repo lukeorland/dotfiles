@@ -1,11 +1,14 @@
+#.profile
+# TODO: check out https://github.com/adamv/dotfiles
+
+# Get the aliases and functions
+if [ -f ~/.bashrc ]; then
+	. ~/.bashrc
+fi
+
+# User specific environment and startup programs
+
 export CLICOLOR=1;
-
-# If using built-in Mac OS X version of ls:
-alias ls='ls -FG'
-# see below for ls alias if using coreutils from homebrew
-
-alias cp='cp -i'
-alias mv='mv -i'
 
 # avoid having consecutive duplicate commands and other not so useful
 # information appended to the history list.
@@ -16,19 +19,6 @@ export HISTIGNORE="?? "
 
 # bash editing using vi techniques
 set -o vi
-
-# use Vim as the MANPAGER
-#export MANPAGER='col -bx | vim -c ":set ft=man nonu nolist" -c ":map q :q<CR>" -R -'
-
-# vimpager, unfortunately, seems to mess up git diff for me.
-#export PAGER=`which vimpager` 
-#alias less=$PAGER
-
-# replace stock Vim with the more well-endowed version bundled with MacVim.app
-# http://blog.coredumped.org/2010/01/osx-vim-and-python.html
-[ -x `which mvim` ] && alias vim=mvim
-# and use it for git as well:
-#GIT_EDITOR="/Applications/MacVim.App/Contents/MacOS/Vim"; export GIT_EDITOR
 
 # next three commands are for rvm
 # http://beginrescueend.com/rvm/install/
@@ -62,10 +52,7 @@ define_vim_wrappers
 source `brew --prefix`/Library/Contributions/brew_bash_completion.sh
 # If using coreutils provided by homebrew:
 #source /usr/local/Cellar/coreutils/8.5/aliases
-#alias ls="$(brew --prefix)/bin/gls --color -p"
-# If using coreutils provided by homebrew:
-alias cp='cp -i'
-alias mv='mv -i'
+
 # Give priority to /usr/local/bin
 # prepending in this order:
 PATH=/usr/local/sbin:"${PATH}"
@@ -92,3 +79,5 @@ PATH=$HOME/Library/Application\ Support/MultiMarkdown/bin:"${PATH}"
 PATH=$HOME/opt/bin:"${PATH}"
 export PATH
 
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
