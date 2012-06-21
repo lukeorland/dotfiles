@@ -9,6 +9,6 @@ fi
 alias ls="ls --color=auto -p"
 alias cp='cp -i'
 alias mv='mv -i'
-alias viq='vim -u NONE'
+alias viq='vim -u NONE -c "filetype on" -c "syntax on" -c "set cmdheight=2" -c e'
 
 set -o vi
