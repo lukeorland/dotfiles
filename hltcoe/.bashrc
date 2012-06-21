@@ -9,5 +9,6 @@ fi
 alias ls="ls --color=auto -p"
 alias cp='cp -i'
 alias mv='mv -i'
+alias viq='vim -u NONE'
 
 set -o vi
