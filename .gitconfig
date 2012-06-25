@@ -33,7 +33,7 @@
 	whitespace = red reverse
 [core]
 	whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
-	editor=vim
+	editor = vim -u NONE -c \"filetype on\" -c \"syntax on\" -c \"set cmdheight=2\" -c e
 	excludesfile = /Users/orluke/.gitignore
 [alias]
 	st = status
