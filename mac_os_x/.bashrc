@@ -1,16 +1,17 @@
+# .bashrc
 
-# use Vim as the MANPAGER
-#export MANPAGER='col -bx | vim -c ":set ft=man nonu nolist" -c ":map q :q<CR>" -R -'
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
 
-# vimpager, unfortunately, seems to mess up git diff for me.
-#export PAGER=`which vimpager` 
-#alias less=$PAGER
-
+# VIM EVERYWHERE
 # replace stock Vim with the more well-endowed version bundled with MacVim.app
 # http://blog.coredumped.org/2010/01/osx-vim-and-python.html
 [ -x `which mvim` ] && alias vim=mvim
-# and use it for git as well:
-#GIT_EDITOR="/Applications/MacVim.App/Contents/MacOS/Vim"; export GIT_EDITOR
+alias viq='vi -u NONE -c "filetype on" -c "syntax on" -c "set cmdheight=2" -c e'
+alias vi='vi -u NONE -c "filetype on" -c "syntax on" -c "set cmdheight=2" -c e'
+set -o vi
 
 alias cp='cp -i'
 alias mv='mv -i'
