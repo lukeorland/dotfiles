@@ -13,7 +13,6 @@ GIT_PS1_SHOWDIRTYSTATE=true
 	source "/usr/share/doc/git-1.7.1/contrib/completion/git-completion.bash" && \
 	export PS1='\n\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w\[\033[00m\]$(__git_ps1 " (%s)")\n\$ '
 
-source /home/hltcoe/lorland/.bash_profile_run_ssh-agent
 export JOSHUA=/home/hltcoe/lorland/workspace/joshua
 export JAVA_HOME=/usr/java/default
 export GIT_SSL_NO_VERIFY=true
@@ -32,3 +31,6 @@ export PATH
 
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
+
+# http://www.funtoo.org/wiki/Keychain
+eval `keychain --eval --agents ssh id_rsa`
