@@ -6,6 +6,7 @@ if [ -f /etc/bashrc ]; then
 fi
 
 # User specific aliases and functions
+alias ll="ls --color=auto -p -a -l -h"
 alias ls="ls --color=auto -p"
 alias cp='cp -i'
 alias mv='mv -i'
