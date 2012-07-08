@@ -25,7 +25,11 @@ export HADOOP_CONF_DIR=/opt/apache/hadoop/conf/apache-mr/mapreduce
 # Load RVM into a shell session *as a function*
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
-PATH=$HOME/opt/bin:$PATH
+# Python
+PYTHONPATH=$PYTHONPATH:/export/apps:~/.local
+export PYTHONPATH
+
+PATH=$HOME/.local/bin:$PATH
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 export PATH
 
