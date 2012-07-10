@@ -22,7 +22,7 @@ set -o vi
 
 # next three commands are for rvm
 # http://beginrescueend.com/rvm/install/
-export CC=gcc-4.2
+#export CC=gcc-4.2  # put this line in ~/.rmvrc
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
 [[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion
 PATH=/Library/Ruby/Gems/1.8/gems:"${PATH}"
