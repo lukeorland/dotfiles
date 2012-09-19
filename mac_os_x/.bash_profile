@@ -18,7 +18,7 @@ export HISTIGNORE="&:pwd:ls:ls -l:ls -la:ll:cd:cd \-:cd /:cd .."
 export HISTIGNORE="?? "
 
 # bash editing using vi techniques
-set -o vi
+#set -o vi
 
 # next three commands are for rvm
 # http://beginrescueend.com/rvm/install/
@@ -59,17 +59,22 @@ PATH=/usr/local/sbin:"${PATH}"
 PATH=/usr/local/bin:"${PATH}"
 PATH=`brew --prefix`/share/python3:"${PATH}"
 PATH=`brew --prefix`/share/python:"${PATH}"
-# bash completion for git
-GIT_PS1_SHOWDIRTYSTATE=true
-source `brew --prefix`/etc/bash_completion.d/git-completion.bash
 #PS1='[\u@\h \w$(__git_ps1 " (%s)")]\$
 # TaskWarrior
 source `brew --prefix`/etc/bash_completion.d/task_completion.sh
-export PS1='\n\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w\[\033[00m\]$(__git_ps1 " (%s)")\n\$ '
 export PYTHONPATH=`brew --prefix`/lib/python:$PYTHONPATH
+ps1='\n\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w\[\033[00m\]'
+
+if [ -f `brew --prefix`/etc/bash_completion.d/git-prompt.sh ]; then
+  . `brew --prefix`/etc/bash_completion.d/git-prompt.sh
+  # bash completion for git
+  GIT_PS1_SHOWDIRTYSTATE=true
+  ps1=$ps1'$(__git_ps1 " (%s)")'
+fi
+export PS1="$ps1\n\$ "
 
 # Java
-export JAVA_HOME=`/usr/libexec/java_home`
+export JAVA_HOME="$(/usr/libexec/java_home)"
 
 # Joshua
 export JOSHUA="$HOME/workspace/joshua"
@@ -81,3 +86,10 @@ export PATH
 
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
+
+export LOCAL_DEV=true
+
+# EC2 stuff
+#export EC2_PRIVATE_KEY="$(/bin/ls "$HOME"/.ec2/pk-*.pem | /usr/bin/head -1)"
+#export EC2_CERT="$(/bin/ls "$HOME"/.ec2/cert-*.pem | /usr/bin/head -1)"
+export EC2_HOME="/usr/local/Library/LinkedKegs/ec2-api-tools/jars"
