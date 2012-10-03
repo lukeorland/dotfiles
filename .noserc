@@ -1,5 +1,5 @@
 [nosetests]
-verbosity=3
+verbosity=2
 with-doctest=1
 with-yanc=1
 with-xtraceback=1
