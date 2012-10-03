@@ -9,9 +9,8 @@ fi
 # replace stock Vim with the more well-endowed version bundled with MacVim.app
 # http://blog.coredumped.org/2010/01/osx-vim-and-python.html
 [ -x `which mvim` ] && alias vim=mvim
-alias viq='vi -u NONE -c "filetype on" -c "syntax on" -c "set cmdheight=2" -c e'
-alias vi='vi -u NONE -c "filetype on" -c "syntax on" -c "set cmdheight=2" -c e'
-set -o vi
+alias vi='mvim -u NONE -c "filetype on" -c "syntax on" -c "set cmdheight=2" -c e'
+export EDITOR='vi -u NONE'
 
 alias cp='cp -i'
 alias mv='mv -i'
