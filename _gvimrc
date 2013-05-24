@@ -1,7 +1,0 @@
-"set guifont=Menlo\ Regular\ for\ Powerline:h14,DejaVu\ Sans\ Mono:h14
-"set listchars=tab:>-,eol:$,trail:-,precedes:<,extends:>
-set listchars=tab:⋅➤,trail:◦,precedes:<,extends:>
-set linespace=2
-"highlight LineNr guibg=black
-set background=light
-colorscheme solarized
