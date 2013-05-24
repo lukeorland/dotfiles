@@ -6,20 +6,23 @@ if [ -f /etc/bashrc ]; then
 fi
 
 # User specific aliases and functions
-alias ll="ls --color=auto -p -a -l -h"
+alias ll="ls --color=always -p -a -l -h | less -R -F"
 alias ls="ls --color=auto -p"
 alias cp='cp -i'
 alias mv='mv -i'
-alias viq='vim -u NONE -c "filetype on" -c "syntax on" -c "set cmdheight=2" -c e'
-alias vi='vi'
+alias vi='vim -u NONE -c "nocompatible" -c "filetype on" -c "syntax on" -c "set cmdheight=2"'
 
+export EDITOR='vim -u NONE'
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export HADOOP_VERSION="0.20.203.0"
 export HADOOP=/opt/apache/hadoop
-export HADOOP_CONF_DIR=/opt/apache/hadoop/conf/apache-mr/mapreduce
+#export HADOOP_CONF_DIR=/opt/apache/hadoop/conf/apache-mr/mapreduce
+export HADOOP_CONF_DIR=$HOME/.local/mapreduce
 export JAVA_HOME=/usr/java/default
-export JOSHUA=/home/hltcoe/lorland/apps/joshua
+export JOSHUA=/home/hltcoe/lorland/apps/joshua-current
+export JOSHUA_DEV=/home/hltcoe/lorland/workspace/mt/joshua
+export MOSES=/home/hltcoe/mpost/code/mosesdecoder
 export AWS_SDK=/home/hltcoe/mpost/sw/aws-java-sdk-1.1.3
 export AWS_VERSION=1.1.3
 
