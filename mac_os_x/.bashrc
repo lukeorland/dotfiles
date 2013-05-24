@@ -8,8 +8,9 @@ fi
 # VIM EVERYWHERE
 # replace stock Vim with the more well-endowed version bundled with MacVim.app
 # http://blog.coredumped.org/2010/01/osx-vim-and-python.html
-[ -x `which mvim` ] && alias vim=mvim
-alias vi='mvim -u NONE -c "filetype on" -c "syntax on" -c "set cmdheight=2" -c e'
+#[ -x `which mvim` ] && alias vim=mvim
+#alias vi='mvim -u NONE -c "filetype on" -c "syntax on" -c "set cmdheight=2" -c e'
+alias vim='mvim -v'
 export EDITOR='vi -u NONE'
 
 alias cp='cp -i'
@@ -20,3 +21,5 @@ alias ll='ls -al'
 alias ls='ls -FG'
 # Else if using coreutils provided by homebrew:
 #alias ls="$(brew --prefix)/bin/gls --color -p"
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

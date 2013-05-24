@@ -6,6 +6,8 @@ if [ -f ~/.bashrc ]; then
 	. ~/.bashrc
 fi
 
+. ~/.secrets
+
 # User specific environment and startup programs
 
 export CLICOLOR=1;
@@ -25,8 +27,8 @@ export HISTIGNORE="?? "
 #export CC=gcc-4.2  # put this line in ~/.rmvrc
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
 [[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion
-PATH=/Library/Ruby/Gems/1.8/gems:"${PATH}"
-eval "$(rbenv init -)"
+#PATH=/Library/Ruby/Gems/1.8/gems:"${PATH}"
+#eval "$(rbenv init -)"
 # support RVM in Vim/Janus
 # Define Vim wrappers which unsets GEM_HOME and GEM_PATH before
 # invoking vim and all known aliases
@@ -57,12 +59,12 @@ source `brew --prefix`/Library/Contributions/brew_bash_completion.sh
 # prepending in this order:
 PATH=/usr/local/sbin:"${PATH}"
 PATH=/usr/local/bin:"${PATH}"
-PATH=`brew --prefix`/share/python3:"${PATH}"
-PATH=`brew --prefix`/share/python:"${PATH}"
+#PATH=`brew --prefix`/share/python3:"${PATH}"
+#PATH=`brew --prefix`/share/python:"${PATH}"
 #PS1='[\u@\h \w$(__git_ps1 " (%s)")]\$
 # TaskWarrior
-source `brew --prefix`/etc/bash_completion.d/task_completion.sh
-export PYTHONPATH=`brew --prefix`/lib/python:$PYTHONPATH
+#source `brew --prefix`/etc/bash_completion.d/task_completion.sh
+#export PYTHONPATH=`brew --prefix`/lib/python:$PYTHONPATH
 ps1='\n\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w\[\033[00m\]'
 
 if [ -f `brew --prefix`/etc/bash_completion.d/git-prompt.sh ]; then
@@ -77,7 +79,7 @@ export PS1="$ps1\n\$ "
 export JAVA_HOME="$(/usr/libexec/java_home)"
 
 # Joshua
-export JOSHUA="$HOME/workspace/joshua"
+export JOSHUA="$HOME/workspace/mt/joshua"
 
 PATH=$HOME/.cabal/bin:"${PATH}"
 PATH=$HOME/Library/Application\ Support/MultiMarkdown/bin:"${PATH}"
@@ -93,3 +95,10 @@ export LOCAL_DEV=true
 #export EC2_PRIVATE_KEY="$(/bin/ls "$HOME"/.ec2/pk-*.pem | /usr/bin/head -1)"
 #export EC2_CERT="$(/bin/ls "$HOME"/.ec2/cert-*.pem | /usr/bin/head -1)"
 export EC2_HOME="/usr/local/Library/LinkedKegs/ec2-api-tools/jars"
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+# startup virtualenv-burrito
+if [ -f $HOME/.venvburrito/startup.sh ]; then
+    . $HOME/.venvburrito/startup.sh
+fi

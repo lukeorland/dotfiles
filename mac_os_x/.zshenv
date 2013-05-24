@@ -114,3 +114,8 @@ export JOSHUA="$HOME/workspace/joshua"
 export CACHEPIPE="$JOSHUA/scripts/training/cachepipe"
 export PERL5LIB="$PERL5LIB:$CACHEPIPE"
 . $CACHEPIPE/bashrc
+export HADOOP="$HOME/src/hadoop-0.20.2"
+export HADOOP_CONF_DIR="$HADOOP/conf/apache-mr/mapreduce"
+export HADOOP_VERSION="0.20.203.0"
+export AWS_SDK="$HOME/src/aws-java-sdk-1.1.3"
+export AWS_VERSION="0.20.2"
