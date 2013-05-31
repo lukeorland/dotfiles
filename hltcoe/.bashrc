@@ -6,8 +6,10 @@ if [ -f /etc/bashrc ]; then
 fi
 
 # User specific aliases and functions
-alias ll="ls --color=always -p -a -l -h | less -R -F"
 alias ls="ls --color=auto -p"
+lsp(){ ls -pahl --color=always "$@" | less -RF; }
+alias ll="lsp"
+
 alias cp='cp -i'
 alias mv='mv -i'
 alias vi='vim -u NONE -c "nocompatible" -c "filetype on" -c "syntax on" -c "set cmdheight=2"'
