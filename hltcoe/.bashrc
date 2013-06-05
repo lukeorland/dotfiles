@@ -12,6 +12,7 @@ alias ll="lsp"
 
 alias cp='cp -i'
 alias mv='mv -i'
+alias tail='tail ---disable-inotify'
 alias vi='vim -u NONE -c "nocompatible" -c "filetype on" -c "syntax on" -c "set cmdheight=2"'
 
 export EDITOR='vim -u NONE'
