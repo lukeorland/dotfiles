@@ -2,7 +2,7 @@
 verbosity=2
 with-doctest=1
 with-yanc=1
-#with-xtraceback=1
+with-xtraceback=1
 xtraceback-color=on
-#nologcapture=1
+nologcapture=1
 process-timeout=2
