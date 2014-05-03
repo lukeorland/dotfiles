@@ -1,0 +1,7 @@
+" Completion behaves like bash
+set wildmenu
+set wildmode=list:longest,full
+" Ignore these files when completing
+set wildignore+=*.o,*.obj,.git,*.pyc
+set wildignore+=eggs/**
+set wildignore+=*.egg-info/**
