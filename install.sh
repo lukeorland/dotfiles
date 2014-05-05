@@ -14,13 +14,13 @@ create_symlinks () {
   }
 
 create_symlinks
-ln -sfn $PWD/vimrc.extra ~/.vim/extra.vimrc
-ln -sfn $PWD/vimrc.after ~/.vim/after.vimrc
 echo "let g:vimified_packages = ['general', 'fancy', 'js', 'os', 'html', 'python', 'coding', 'color']" > ~/.vim/local.vimrc
 pushd $PWD
 cd deps
 sh vimified/install.sh
 popd
+ln -sfn $PWD/vimrc.extra ~/.vim/extra.vimrc
+ln -sfn $PWD/vimrc.after ~/.vim/after.vimrc
 
 # Git
 ln -sfn $PWD/deps/yadr/git/gitconfig ~/.gitconfig
