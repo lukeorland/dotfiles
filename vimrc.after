@@ -5,4 +5,10 @@ set wildmode=list:longest,full
 set wildignore+=*.o,*.obj,.git,*.pyc
 set wildignore+=eggs/**
 set wildignore+=*.egg-info/**
+
+" Show current line number and relative numbers above and below.
+set number
+set relativenumber
+
+" Whitespace highlighting
 set listchars=tab:↦\ ,trail:◦,precedes:˂,extends:˃
