@@ -5,3 +5,4 @@ set wildmode=list:longest,full
 set wildignore+=*.o,*.obj,.git,*.pyc
 set wildignore+=eggs/**
 set wildignore+=*.egg-info/**
+set listchars=tab:↦\ ,trail:◦,precedes:˂,extends:˃
