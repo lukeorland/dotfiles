@@ -1,0 +1,9 @@
+[ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
+
+# if running bash
+if [ -n "$BASH_VERSION" ]; then
+    # startup virtualenv-burrito
+    if [ -f "$HOME/.venvburrito/startup.sh" ]; then
+        . "$HOME/.venvburrito/startup.sh"
+    fi
+fi
