@@ -1,1 +1,2 @@
+# http://www.reasonablyopinionated.com/2009/03/automatically-reconnecting-to-ssh-agent.html?showComment=1366276816672#c2195202217080006062
 alias screen="test $SSH_AUTH_SOCK && ln -sf \"$SSH_AUTH_SOCK\" \"/tmp/ssh-agent-$USER-screen\"; screen"
