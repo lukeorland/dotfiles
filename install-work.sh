@@ -2,11 +2,11 @@
 
 git submodule update --init --recursive
 
-# Vim
-pushd $PWD
-cd dotvim
-./install.sh
-popd
+## Vim
+#pushd $PWD
+#cd dotvim
+#./install.sh
+#popd
 
 # Git
 ln -sfn $PWD/dotvim/deps/yadr/git/gitconfig ~/.gitconfig
