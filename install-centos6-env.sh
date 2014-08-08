@@ -6,6 +6,9 @@ sudo yum install ncurses ncurses-devel lua.x86_64 lua-devel.x86_64
 PREFIX=~lorland/.local
 cd $HOME/src
 
+wget http://pkgs.repoforge.org/keychain/keychain-2.7.0-1.el6.rf.noarch.rpm
+sudo rpm -i keychain-2.7.0-1.el6.rf.noarch.rpm
+
 wget http://pkgs.repoforge.org/cmake/cmake-2.8.8-1.el6.rfx.x86_64.rpm
 sudo rpm -i cmake-2.8.8-1.el6.rfx.x86_64.rpm
 
