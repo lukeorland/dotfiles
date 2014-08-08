@@ -16,3 +16,6 @@ ln -sfn $PWD/screenrc ~/.screenrc
 ln -sfn $PWD/remote-server/dotprofile ~/.profile
 ln -sfn $PWD/work/bashrc ~/.bashrc
 ln -sfn $PWD/work/bash_profile ~/.bash_profile
+
+mkdir -p ~/.ssh
+ln -sfn $PWD/work/ssh-rc ~/.ssh/rc
