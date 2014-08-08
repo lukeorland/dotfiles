@@ -7,5 +7,3 @@ fi
 
 # User specific environment and startup programs
 export PATH="$HOME/.local/bin:$PATH"
-
-eval `keychain --agents ssh --eval id_rsa`
