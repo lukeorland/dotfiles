@@ -1,1 +1,0 @@
-This is a personal collection of single-file dotfiles for the various operating systems I use. My .vim directory and .vimrc and .gvimrc are not in this collection. They are maintained in a separate repository

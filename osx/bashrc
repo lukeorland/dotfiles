@@ -1,9 +1,0 @@
-# Aliases
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
-
-# If using built-in Mac OS X version of ls:
-alias ls='ls -FG'
-alias ll='ls -FGal'
-
