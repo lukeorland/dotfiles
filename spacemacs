@@ -33,14 +33,25 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(csv
+   '(
+     csv
+     dash
      deft
      docker
      ess  ;; R language
+     github
      html
+     ipython-notebook
      javascript
      markdown
      python
+     react
+     restclient
+     search-engine
+     spotify
+     sql
+     themes-megapack
+     yaml
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
@@ -50,9 +61,8 @@ This function should only modify configuration layer settings."
      auto-completion
      better-defaults
      emacs-lisp
-     ;; git
-     ;; markdown
-     neotree
+     git
+     markdown
      ;; org
      ;; (shell :variables
      ;;        shell-default-height 30
@@ -62,9 +72,9 @@ This function should only modify configuration layer settings."
             shell-default-position 'bottom-and-right
             shell-default-height 30
             shell-default-full-span nil)
-     ;; spell-checking
+     spell-checking
      syntax-checking
-     ;; version-control
+     version-control
      )
 
    ;; List of additional packages that will be installed without being
@@ -181,7 +191,8 @@ It should only modify the values of Spacemacs settings."
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(spacemacs-dark
-                         spacemacs-light)
+                         spacemacs-light
+                         leuven)
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
    ;; `all-the-icons', `custom', `vim-powerline' and `vanilla'. The first three
@@ -469,6 +480,66 @@ before packages are loaded."
   (add-hook 'python-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
   (add-hook 'ruby-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
   (add-hook 'js2-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
+  (add-hook 'term-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
+  (add-hook 'shell-script-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
+
+  (defun setenvs-redshift ()
+    (interactive)
+    (setenv "REDSHIFT_USER"
+            (replace-regexp-in-string "\n\\'"
+                                      ""
+                                      (shell-command-to-string "lpass show 'newsela redshift' --username")))
+
+    (setenv "REDSHIFT_PASS"
+            (replace-regexp-in-string "\n\\'"
+                                      ""
+                                      (shell-command-to-string "lpass show 'newsela redshift' --password")))
+
+    (setenv "REDSHIFT_HOST"
+            (replace-regexp-in-string "\n\\'"
+                                      ""
+                                      (shell-command-to-string "lpass show 'newsela redshift' --field=Hostname")))
+    (setenv "REDSHIFT_PORT"
+            (replace-regexp-in-string "\n\\'"
+                                      ""
+                                      (shell-command-to-string "lpass show 'newsela redshift' --field=Port")))
+    (setenv "REDSHIFT_DB_NAME"
+            (replace-regexp-in-string "\n\\'"
+                                      ""
+                                      (shell-command-to-string "lpass show 'newsela redshift' --field=Database")))
+    (setenv "PGUSER"
+            (getenv "REDSHIFT_USER"))
+    (setenv "PGPASSWORD"
+            (getenv "REDSHIFT_PASS"))
+    (setenv "PGHOST"
+            (getenv "REDSHIFT_HOST"))
+    (setenv "PGPORT"
+            (getenv "REDSHIFT_PORT"))
+    (setenv "PGDATABASE"
+            (getenv "REDSHIFT_DB_NAME"))
+
+    (setenv "DATABASE_URL"
+            (concat "postgres://"
+                    (getenv "REDSHIFT_USER")
+                    ":"
+                    (getenv "REDSHIFT_PASS")
+                    "@"
+                    (getenv "REDSHIFT_HOST")
+                    ":"
+                    (getenv "REDSHIFT_PORT")
+                    "/"
+                    (getenv "REDSHIFT_DB_NAME"))
+    ))
+
+  (defun pyspark-shell-interpreter ()
+    (interactive)
+    (setq python-shell-interpreter "pyspark")
+    (setq python-shell-interpreter-args "--driver-memory 4G --repositories http://redshift-maven-repository.s3-website-us-east-1.amazonaws.com/release --packages com.amazonaws:aws-java-sdk-s3:1.11.21,com.databricks:spark-redshift_2.11:3.0.0-preview1,org.apache.hadoop:hadoop-aws:2.8.2,com.amazon.redshift:redshift-jdbc42:1.2.10.1009,org.postgresql:postgresql:42.2.2")
+    (setq python-shell-interpreter-interactive-arg ""))
+
+  ;; Disable dangerous :q! (I have muscle memory that causes me type that without thinking)
+  (evil-ex-define-cmd "q[uit]" nil)
+
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -485,7 +556,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (csv-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode impatient-mode htmlize helm-css-scss haml-mode emmet-mode counsel-css company-web web-completion-data add-node-modules-path xterm-color shell-pop multi-term eshell-z eshell-prompt-extras esh-help yasnippet-snippets yapfify ws-butler winum which-key web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package unfill toc-org symon string-inflection spaceline-all-the-icons restart-emacs request rainbow-delimiters pyvenv pytest pyenv-mode py-isort popwin pippel pipenv pip-requirements persp-mode pcre2el password-generator paradox overseer org-plus-contrib org-bullets open-junk-file neotree nameless mwim move-text mmm-mode markdown-toc macrostep lorem-ipsum livid-mode live-py-mode linum-relative link-hint js2-refactor js-doc indent-guide hy-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-pydoc helm-purpose helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gh-md fuzzy font-lock+ flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu elisp-slime-nav editorconfig dumb-jump dockerfile-mode docker define-word cython-mode counsel-projectile company-tern company-statistics company-anaconda column-enforce-mode coffee-mode clean-aindent-mode centered-cursor-mode auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))))
+    (web-mode link-hint ein docker ess multiple-cursors magit git-commit ghub helm helm-core s zenburn-theme zen-and-art-theme zeal-at-point yasnippet-snippets yapfify yaml-mode xterm-color ws-butler with-editor winum white-sand-theme which-key websocket web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package unfill underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme toc-org tao-theme tangotango-theme tango-plus-theme tango-2-theme tagedit tablist symon sunny-day-theme sublime-themes subatomic256-theme subatomic-theme string-inflection sql-indent spotify spaceline-all-the-icons spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme smeargle slim-mode shell-pop seti-theme scss-mode sass-mode reverse-theme restclient-helm restart-emacs request-deferred rebecca-theme rainbow-delimiters railscasts-theme pyvenv pytest pyenv-mode py-isort purple-haze-theme pug-mode professional-theme popwin planet-theme pippel pipenv pip-requirements phoenix-dark-pink-theme phoenix-dark-mono-theme persp-mode pcre2el password-generator paradox overseer organic-green-theme org-plus-contrib org-bullets open-junk-file omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme ob-restclient ob-ipython ob-http noctilux-theme neotree naquadah-theme nameless mwim mustang-theme multi-term move-text monokai-theme monochrome-theme molokai-theme moe-theme mmm-mode minimal-theme material-theme markdown-toc majapahit-theme magit-gitflow magit-gh-pulls madhat2r-theme macrostep lush-theme lorem-ipsum livid-mode live-py-mode linum-relative light-soap-theme less-css-mode julia-mode json-mode js2-refactor js-doc jbeans-theme jazz-theme ir-black-theme inkpot-theme indent-guide impatient-mode hy-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation heroku-theme hemisu-theme helm-xref helm-themes helm-swoop helm-spotify-plus helm-pydoc helm-purpose helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-dash helm-css-scss helm-company helm-c-yasnippet helm-ag hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme google-translate golden-ratio github-search github-clone gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md gandalf-theme fuzzy font-lock+ flyspell-correct-helm flycheck-pos-tip flx-ido flatui-theme flatland-theme fill-column-indicator farmhouse-theme fancy-battery eyebrowse expand-region exotica-theme exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu ess-R-data-view espresso-theme eshell-z eshell-prompt-extras esh-help engine-mode emmet-mode elisp-slime-nav editorconfig dumb-jump dracula-theme dockerfile-mode docker-tramp django-theme diminish diff-hl deft define-word darktooth-theme darkokai-theme darkmine-theme darkburn-theme dakrone-theme cython-mode cyberpunk-theme csv-mode counsel-projectile company-web company-tern company-statistics company-restclient company-anaconda column-enforce-mode color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized coffee-mode clues-theme clean-aindent-mode cherry-blossom-theme centered-cursor-mode busybee-theme bubbleberry-theme browse-at-remote birds-of-paradise-plus-theme badwolf-theme auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes aggressive-indent afternoon-theme adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
