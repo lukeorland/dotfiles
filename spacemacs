@@ -69,6 +69,7 @@ This function should only modify configuration layer settings."
      emacs-lisp
      git
      markdown
+     multiple-cursors
      ;; neotree
      org
      ;; (shell :variables
@@ -93,6 +94,8 @@ This function should only modify configuration layer settings."
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages '(sql-indent
                                       blacken
+                                      ;; https://github.com/mbertheau/spacemacs-faq/wiki#how-do-i-install-an-emacs-package-from-github-package-github-
+                                      (py-docformatter :location (recipe :fetcher github :repo "humitos/py-docformatter.el"))
                                       ;; pyenv-mode
                                       ;; pyenv-mode-auto
                                       ;; (jedi :location elpa)
