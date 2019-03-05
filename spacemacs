@@ -61,6 +61,7 @@ This function should only modify configuration layer settings."
      swift
      themes-megapack
      treemacs
+     vimscript
      yaml
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
@@ -83,15 +84,16 @@ This function should only modify configuration layer settings."
           org-enable-github-support t
           org-enable-bootstrap-support t
           org-enable-reveal-js-support t
+          org-projectile-file "TODOs.org"
           )
-     ;; (shell :variables
-     ;;        shell-default-height 30
-     ;;        shell-default-position 'bottom)
      (shell :variables
             shell-default-shell 'multi-term
             shell-default-position 'bottom-and-right
             shell-default-height 30
-            shell-default-full-span nil)
+            shell-default-full-span nil
+            ;; shell-default-term-shell "bash"
+            ;; multi-term-program "bash"
+            )
      spell-checking
      syntax-checking
      version-control
@@ -107,10 +109,11 @@ This function should only modify configuration layer settings."
    dotspacemacs-additional-packages '(sql-indent
                                       blacken
                                       ;; https://github.com/mbertheau/spacemacs-faq/wiki#how-do-i-install-an-emacs-package-from-github-package-github-
-                                      (py-docformatter :location (recipe :fetcher github :repo "humitos/py-docformatter.el"))
+                                      ;; (py-docformatter :location (recipe :fetcher github :repo "humitos/py-docformatter.el"))
                                       ;; pyenv-mode
-                                      ;; pyenv-mode-auto
+                                      pyenv-mode-auto
                                       ;; (jedi :location elpa)
+                                      atom-one-dark-theme
                                       org-edna
                                       graphviz-dot-mode
                                       org-mind-map
@@ -122,7 +125,7 @@ This function should only modify configuration layer settings."
    ;; A list of packages that will not be installed and loaded.
    dotspacemacs-excluded-packages '(importmagic
                                     ;; neotree
-                                    ;; exec-path-from-shell
+                                    exec-path-from-shell
                                     )
 
    ;; Defines the behaviour of Spacemacs when installing packages.
@@ -240,7 +243,8 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(eziam-dusk
+   dotspacemacs-themes '(atom-one-dark
+                         eziam-dusk
                          spacegray
                          leuven
                          spacemacs-dark
@@ -489,7 +493,8 @@ This function defines the environment variables for your Emacs session. By
 default it calls `spacemacs/load-spacemacs-env' which loads the environment
 variables declared in `~/.spacemacs.env' or `~/.spacemacs.d/.spacemacs.env'.
 See the header of this file for more information."
-  (spacemacs/load-spacemacs-env))
+  (spacemacs/load-spacemacs-env)
+  )
 
 (defun dotspacemacs/user-init ()
   "Initialization for user code:
@@ -620,16 +625,23 @@ before packages are loaded."
      ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
 
   (setq undo-tree-auto-save-history t)
+  (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
+
 
   (add-hook 'sql-mode-hook #'sqlind-minor-mode)
 
   (with-eval-after-load 'org
     ;; here goes your Org config :)
+    (org-edna-load)
 
     (org-babel-do-load-languages
      'org-babel-load-languages
      '((dot . t) ; this line activates dot
        (plantuml . t)))
+
+    (with-eval-after-load 'org-agenda
+      (require 'org-projectile)
+      (push (org-projectile:todo-files) org-agenda-files))
 
     (use-package org-mind-map
       :init
@@ -645,31 +657,12 @@ before packages are loaded."
       ;; (setq org-mind-map-engine "sfdp")   ; Multiscale version of fdp for the layout of large graphs
       ;; (setq org-mind-map-engine "twopi")  ; Radial layouts
       ;; (setq org-mind-map-engine "circo")  ; Circular Layout
-      )
+     )
     )
 
   ;; TODO: source ~/.spacemacs-user-config-local.el
   )
 
+
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
-(defun dotspacemacs/emacs-custom-settings ()
-  "Emacs custom settings.
-This is an auto-generated function, do not modify its content directly, use
-Emacs customize menu instead.
-This function is called at the very end of Spacemacs initialization."
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (ox-twbs ox-reveal ox-gfm org-ref pdf-tools key-chord helm-bibtex parsebib company-auctex biblio biblio-core auctex zenburn-theme zen-and-art-theme zeal-at-point yasnippet-snippets yapfify yaml-mode xterm-color ws-butler writeroom-mode winum white-sand-theme which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package unfill underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme treemacs-projectile treemacs-evil toxi-theme toc-org tao-theme tangotango-theme tango-plus-theme tango-2-theme tagedit symon swift-mode sunny-day-theme sublime-themes subatomic256-theme subatomic-theme string-inflection sql-indent spotify spaceline-all-the-icons spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme smeargle slim-mode shell-pop seti-theme scss-mode sass-mode rjsx-mode reverse-theme restclient-helm restart-emacs rebecca-theme rainbow-delimiters railscasts-theme pyvenv pytest pyenv-mode py-isort py-docformatter purple-haze-theme pug-mode professional-theme prettier-js popwin plantuml-mode planet-theme pippel pipenv pip-requirements phoenix-dark-pink-theme phoenix-dark-mono-theme persp-mode pcre2el password-generator paradox pandoc-mode ox-pandoc overseer orgit organic-green-theme org-projectile org-present org-pomodoro org-mind-map org-mime org-edna org-download org-bullets org-brain open-junk-file omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme ob-restclient ob-ipython ob-http noctilux-theme naquadah-theme nameless mwim mustang-theme multi-term move-text monokai-theme monochrome-theme molokai-theme moe-theme mmm-mode minimal-theme material-theme markdown-toc majapahit-theme magithub magit-svn magit-gitflow madhat2r-theme macrostep lush-theme lsp-julia lorem-ipsum livid-mode live-py-mode link-hint light-soap-theme kaolin-themes julia-repl json-navigator js2-refactor js-doc jbeans-theme jazz-theme ir-black-theme inkpot-theme indent-guide impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation heroku-theme hemisu-theme helm-xref helm-themes helm-swoop helm-spotify-plus helm-pydoc helm-purpose helm-projectile helm-org-rifle helm-mode-manager helm-make helm-gitignore helm-git-grep helm-flx helm-descbinds helm-dash helm-css-scss helm-company helm-c-yasnippet helm-ag hc-zenburn-theme gruvbox-theme gruber-darker-theme graphviz-dot-mode grandshell-theme gotham-theme google-translate golden-ratio gnuplot gitignore-templates github-search github-clone gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md gandalf-theme fuzzy forge font-lock+ flyspell-correct-helm flycheck-pos-tip flx-ido flatui-theme flatland-theme fill-column-indicator farmhouse-theme fancy-battery eziam-theme eyebrowse expand-region exotica-theme evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu ess-R-data-view espresso-theme eshell-z eshell-prompt-extras esh-help engine-mode emmet-mode elisp-slime-nav ein editorconfig dumb-jump dracula-theme dotenv-mode doom-themes doom-modeline dockerfile-mode docker django-theme diminish diff-hl deft define-word darktooth-theme darkokai-theme darkmine-theme darkburn-theme dakrone-theme cython-mode cyberpunk-theme csv-mode counsel-projectile company-web company-tern company-statistics company-restclient company-quickhelp company-anaconda column-enforce-mode color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme clean-aindent-mode cherry-blossom-theme centered-cursor-mode busybee-theme bubbleberry-theme browse-at-remote blacken birds-of-paradise-plus-theme badwolf-theme auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes aggressive-indent afternoon-theme ace-link ace-jump-helm-line ac-ispell))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-)
