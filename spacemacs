@@ -209,6 +209,10 @@ It should only modify the values of Spacemacs settings."
    ;; section of the documentation for details on available variables.
    ;; (default 'vim)
    dotspacemacs-editing-style 'vim
+   ;; dotspacemacs-editing-style '(hybrid :variables
+   ;;                                     hybrid-mode-enable-evilified-state t
+   ;;                                     hybrid-mode-enable-hjkl-bindings t
+   ;;                                     hybrid-mode-default-state 'normal)
 
    ;; If non-nil output loading progress in `*Messages*' buffer. (default nil)
    dotspacemacs-verbose-loading nil
