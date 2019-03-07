@@ -52,7 +52,7 @@ This function should only modify configuration layer settings."
      (plantuml :variables
                plantuml-jar-path "/usr/share/java/plantuml.jar"
                org-plantuml-jar-path "/usr/share/java/plantuml.jar")
-     python
+    (python :variables python-test-runner '(pytest nose))
      react
      restclient
      search-engine
@@ -117,6 +117,7 @@ This function should only modify configuration layer settings."
                                       org-edna
                                       graphviz-dot-mode
                                       org-mind-map
+                                      emamux
                                       )
 
    ;; A list of packages that cannot be updated.
@@ -261,7 +262,8 @@ It should only modify the values of Spacemacs settings."
    ;; refer to the DOCUMENTATION.org for more info on how to create your own
    ;; spaceline theme. Value can be a symbol or list with additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
-   dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.5)
+   ;; dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.5)
+   dotspacemacs-mode-line-theme 'doom
 
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
@@ -524,6 +526,10 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
+
+  (setq column-number-indicator-zero-based nil)
+
+  (require 'emamux)
 
   (require 'blacken)
   (add-hook 'python-mode-hook 'blacken-mode)
