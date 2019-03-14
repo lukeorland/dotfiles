@@ -55,6 +55,7 @@ This function should only modify configuration layer settings."
     (python :variables python-test-runner '(pytest nose))
      react
      restclient
+     rust  ;; and TOML
      search-engine
      spotify
      sql
