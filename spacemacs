@@ -40,7 +40,7 @@ This function should only modify configuration layer settings."
      ess  ;; R language
      github
      html
-     ipython-notebook
+     ;; ipython-notebook  ;; causes this error: https://github.com/syl20bnr/spacemacs/issues/9941
      javascript
      julia
      bibtex
@@ -544,6 +544,10 @@ before packages are loaded."
   (setq deft-recursive t)
   (setq deft-default-extension "md")
   (setq deft-auto-save-interval 0)  ;; Disable auto-save
+
+  ;; Fix term mode scrolling for Emacs 26.1
+  ;; https://github.com/syl20bnr/spacemacs/issues/10779#issuecomment-427712967
+  (setq term-char-mode-point-at-process-mark nil)
 
   ;; Include underscores in word motions:
   (add-hook 'term-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
