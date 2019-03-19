@@ -37,6 +37,7 @@ This function should only modify configuration layer settings."
      dash
      deft
      docker
+     emoji
      ess  ;; R language
      github
      html
@@ -339,7 +340,7 @@ It should only modify the values of Spacemacs settings."
    ;; If non-nil, the paste transient-state is enabled. While enabled, after you
    ;; paste something, pressing `C-j' and `C-k' several times cycles through the
    ;; elements in the `kill-ring'. (default nil)
-   dotspacemacs-enable-paste-transient-state nil
+   dotspacemacs-enable-paste-transient-state t
 
    ;; Which-key delay in seconds. The which-key buffer is the popup listing
    ;; the commands bound to the current keystroke sequence. (default 0.4)
@@ -654,9 +655,9 @@ before packages are loaded."
      '((dot . t) ; this line activates dot
        (plantuml . t)))
 
-    (with-eval-after-load 'org-agenda
-      (require 'org-projectile)
-      (push (org-projectile:todo-files) org-agenda-files))
+    ;; (with-eval-after-load 'org-agenda
+    ;;   (require 'org-projectile)
+    ;;   (push (org-projectile:todo-files) org-agenda-files))   ;; API changed; this is no longer a valid setting.
 
     (use-package org-mind-map
       :init
@@ -674,6 +675,18 @@ before packages are loaded."
       ;; (setq org-mind-map-engine "circo")  ; Circular Layout
      )
     )
+
+  (with-eval-after-load 'treemacs
+    (defun treemacs-ignore-gitignore (file _)
+      (string= file ".gitignore"))
+    (push #'treemacs-ignore-gitignore treemacs-ignored-file-predicates))
+
+  ;; Ctrl-a increases a number just like in vim
+  ;; https://emacs.stackexchange.com/a/47119/11176
+  (define-key evil-normal-state-map (kbd "C-a") 'evil-numbers/inc-at-pt)
+  (define-key evil-visual-state-map (kbd "C-a") 'evil-numbers/inc-at-pt)
+  (define-key evil-normal-state-map (kbd "C-x") 'evil-numbers/dec-at-pt)
+  (define-key evil-visual-state-map (kbd "C-x") 'evil-numbers/dec-at-pt)
 
   ;; TODO: source ~/.spacemacs-user-config-local.el
   )
