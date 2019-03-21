@@ -250,7 +250,7 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(atom-one-dark
+   dotspacemacs-themes '(doom-one
                          eziam-dusk
                          spacegray
                          leuven
@@ -687,6 +687,14 @@ before packages are loaded."
   (define-key evil-visual-state-map (kbd "C-a") 'evil-numbers/inc-at-pt)
   (define-key evil-normal-state-map (kbd "C-x") 'evil-numbers/dec-at-pt)
   (define-key evil-visual-state-map (kbd "C-x") 'evil-numbers/dec-at-pt)
+
+  ;; https://github.com/syl20bnr/spacemacs/issues/2345#issuecomment-240634646
+  (defun bb/setup-term-mode ()
+    (evil-local-set-key 'insert (kbd "C-r") 'bb/send-C-r))
+  (defun bb/send-C-r ()
+    (interactive)
+    (term-send-raw-string "\C-r"))
+  (add-hook 'term-mode-hook 'bb/setup-term-mode)
 
   ;; TODO: source ~/.spacemacs-user-config-local.el
   )
